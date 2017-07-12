@@ -7,7 +7,7 @@ function refreshData() {
     type: 'GET',
     url: '/petshop',
     success: function(response) {
-      //console.log(response);
+      console.log(response);
       appendToDom(response);
     }
   });
@@ -15,17 +15,17 @@ function refreshData() {
 
 function appendToDom(response){
   var displays = response.arrayX;
+  console.log(displays);
+  $('#showInfo').empty();
 
-  $('.table').empty();
-
-  for(var i=0; i < doinks.length; i++){
+  for(var i=0; i < displays.length; i++){
     var display = displays[i];
-
-    $tr = $('<tr></tr>');
+    console.log(display);
+    var $tr = $('<tr></tr>');
     //$tr.data('pet', dink);
     //$tr.append('<td>' + dink)
-    $tr.append('<td>' + display.owner + '</td>');
-    $tr.append('<td>' + display.pet + '</td>');
+    $tr.append('<td>' + display.first_name + ' ' + display.last_name + '</td>');
+    $tr.append('<td>' + display.name + '</td>');
     $tr.append('<td>' + display.breed + '</td>');
     $tr.append('<td>' + display.color + '</td>');
     $tr.append('<td>' + '<button>Go</button>' + '</td>');

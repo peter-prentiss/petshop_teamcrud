@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
       res.sendStatus(500);
     } else {
       var queryText = 'SELECT * FROM "owners" ' +
-                      'JOIN "pets" ON "owner"."id" = "pets"."owner_id" ' +
+                      'JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
                       'JOIN "visits" ON "pets"."id" = "visits"."pet_id";';
       db.query(queryText, function(errorMakingQuery, result){
         done();
