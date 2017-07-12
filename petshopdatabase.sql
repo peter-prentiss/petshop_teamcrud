@@ -19,3 +19,12 @@ CREATE TABLE "visits" (
 	"check_out_date" timestamp,
   "pet_id" varchar (100) not null
 );
+
+INSERT INTO "owners" ("first_name", "last_name")
+VALUES ('Igor', 'Klempt');
+
+INSERT INTO "pets" ("name", "breed", "color", "owner_id")
+VALUES ('Sally', 'lizard', 'lime green', 1);
+
+INSERT INTO "visits" ("pet_id")
+VALUES (1);
