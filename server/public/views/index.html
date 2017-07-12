@@ -2,9 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Pet Hotel</title>
+    <link rel="stylesheet" href="/views/styles.css">
+    <script src="/vendors/jquery.min.js" charset="utf-8"></script>
+    <script src="/scripts/client.js" charset="utf-8"></script>
   </head>
   <body>
+    <body>
+    <div class="owner">
+      <h1>Owners and Pets</h1>
 
+      <label> First Name </label>
+      <input type="text" name="" value="" id="#firstName"/>
+
+      <label>Last Name</label>
+      <input type="text" name="" value="" id="lastName"/>
+      <button type="button" name="button" id="submitOwner">Register</button>
+      <br><br>
+    </div>
+    <div class="pets">
+      <h1>Pets</h1>
+      <label>Owner Name</label>
+      <select name="ownerNames" id="dropdDown">
+
+      </select>
+      <label>Pet Name</label>
+      <input type="text" name="" value="" id="name"/>
+
+      <label>Breed</label>
+      <input type="text" name="" value="" id="breed"/>
+
+      <label>Color</label>
+      <input type="text" name="" value="" id="color"/>
+
+      <button type="button" name="button" id="submitPet">Add Pet</button>
+
+      <div class="table">
+        <br><br>
+        <table>
+          <thead>
+            <th>Owner</th>
+            <th>Pet</th>
+            <th>Breed</th>
+            <th>Color</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Check In/Out</th>
+          </thead>
+          <tbody id="showInfo">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>
