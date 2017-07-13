@@ -16,6 +16,7 @@ $(document).ready(function(){
       success: function(response){
         console.log('Added a new owner!');
         refreshData(); // refresh the page
+        ownerData();
       }
     });
   });
@@ -146,7 +147,7 @@ function populateDropdown(response) {
     var doink = ownerArray[i];
     // console.log('I am in the populateDropdown function, in the array.', doink.first_name , doink.last_name + ' is also here.');
     //$("#dropDown").append(new Option( doink.first_name + ' ' + doink.last_name ));
-    $('#dropDown').append($(`<option value="${i + 1}">${doink.first_name} ${doink.last_name}</option>`));
+    $('#dropDown').append($(`<option value="${doink.id}">${doink.first_name} ${doink.last_name}</option>`));
     console.log($('#dropDown option:selected').val());
   }
 
