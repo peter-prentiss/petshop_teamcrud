@@ -7,6 +7,7 @@ function refreshData() {
     type: 'GET',
     url: '/petshop',
     success: function(response) {
+      $('#showInfo').empty();
       //console.log(response);
       appendToDom(response);
     }
@@ -16,14 +17,12 @@ function refreshData() {
 function appendToDom(response){
   var displays = response.arrayX;
 
-  $('.table').empty();
-
-  for(var i=0; i < doinks.length; i++){
+  for(var i=0; i < displays.length; i++){
     var display = displays[i];
 
     $tr = $('<tr></tr>');
     //$tr.data('pet', dink);
-    //$tr.append('<td>' + dink)
+
     $tr.append('<td>' + display.owner + '</td>');
     $tr.append('<td>' + display.pet + '</td>');
     $tr.append('<td>' + display.breed + '</td>');
