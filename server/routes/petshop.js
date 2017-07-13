@@ -18,7 +18,13 @@ router.get('/', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
+<<<<<<< HEAD
       var queryText = 'SELECT owners.first_name, owners.last_name, owners.id AS ownerid, pets.id AS petid, pets.name, pets.breed, pets.color FROM "owners" ' +
+=======
+      var queryText = 'SELECT owners.first_name, owners.last_name, owners.id AS ownerid' +
+                      ', pets.id AS petid, pets.name, pets.breed, pets.color, pets.owner_id, ' +
+                      'visits.id AS visitid, visits.check_in_date, visits.check_out_date, visits.pet_id FROM "owners" ' +
+>>>>>>> feature-edit
                       'LEFT OUTER JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
                       'LEFT OUTER JOIN "visits" ON "pets"."id" = "visits"."pet_id" ' +
                       'ORDER BY "owners"."last_name";';
@@ -42,7 +48,11 @@ router.get('/owners', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
+<<<<<<< HEAD
       var queryText = 'SELECT * FROM owners;';
+=======
+      var queryText = 'SELECT * FROM "owners" ORDER BY last_name;';
+>>>>>>> feature-edit
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -160,7 +170,8 @@ router.put('/pet', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'UPDATE "pets" SET "name" = $1, "breed" = $2, "color" = $3) WHERE "id" = $4;';
+      var queryText = 'UPDATE "pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
+      console.log(pet.name, pet.breed, pet.color, pet.id);
       db.query(queryText, [pet.name, pet.breed, pet.color, pet.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
