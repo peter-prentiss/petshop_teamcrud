@@ -25,6 +25,3 @@ VALUES ('Igor', 'Klempt');
 
 INSERT INTO "pets" ("name", "breed", "color", "owner_id")
 VALUES ('Sally', 'lizard', 'lime green', 1);
-
-INSERT INTO "visits" ("pet_id")
-VALUES (1);
