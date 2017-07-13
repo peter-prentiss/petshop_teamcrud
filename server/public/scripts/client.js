@@ -1,6 +1,6 @@
 $(document).ready(function(){
   refreshData(); //refresh the page for data changes
-
+  ownerData();
   //add owner to database
   $('#submitOwner').on('click', function(){
     var owner = {};
@@ -53,13 +53,14 @@ function refreshData() {
 }
 
 function appendToDom(response){
+  console.log(response);
   var displays = response.arrayX;
   // console.log(displays);
   $('#showInfo').empty();
 
   for(var i=0; i < displays.length; i++){
     var display = displays[i];
-    // console.log(display);
+    console.log(display);
 
     if (display.name === null){ //if the owner is added without any pet data, null values come to table
       display.name = 'No pets yet!';
@@ -75,7 +76,7 @@ function appendToDom(response){
     $tr.append('<td>' + display.name + '</td>');
     $tr.append('<td>' + display.breed + '</td>');
     $tr.append('<td>' + display.color + '</td>');
-    $tr.append('<td>' + '<button>Go</button>' + '</td>');
+    $tr.append('<td>' + '<button class="edit-btn" data-editid=>Edit</button>' + '</td>');
     $tr.append('<td>' + '<button>Go</button>' + '</td>');
     $tr.append('<td>' + '<button>IN</button>' + '</td>');
 

@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'SELECT * FROM "owners" ' +
+      var queryText = 'SELECT owners.first_name, owners.last_name, owners.id AS ownerid, pets.id AS petid, pets.name, pets.breed, pets.color FROM "owners" ' +
                       'LEFT OUTER JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
                       'LEFT OUTER JOIN "visits" ON "pets"."id" = "visits"."pet_id" ' +
                       'ORDER BY "owners"."last_name";';
