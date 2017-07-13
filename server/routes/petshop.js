@@ -18,10 +18,33 @@ router.get('/', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'SELECT owners.first_name, owners.last_name, owners.id AS ownerid, pets.id AS petid, pets.name, pets.breed, pets.color FROM "owners" ' +
+      var queryText = 'SELECT owners.first_name, owners.last_name, owners.id AS ownerid' +
+                      ', pets.id AS petid, pets.name, pets.breed, pets.color, pets.owner_id, ' +
+                      'visits.id AS visitid, visits.check_in_date, visits.check_out_date, visits.pet_id FROM "owners" ' +
                       'LEFT OUTER JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
                       'LEFT OUTER JOIN "visits" ON "pets"."id" = "visits"."pet_id" ' +
                       'ORDER BY "owners"."last_name";';
+      db.query(queryText, function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          res.send({arrayX: result.rows});
+        }
+      });
+    }
+  });
+});
+
+router.get('/owners', function(req, res) {
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      var queryText = 'SELECT * FROM "owners" ORDER BY last_name;';
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -139,7 +162,8 @@ router.put('/pet', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'UPDATE "pets" SET "name" = $1, "breed" = $2, "color" = $3) WHERE "id" = $4;';
+      var queryText = 'UPDATE "pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
+      console.log(pet.name, pet.breed, pet.color, pet.id);
       db.query(queryText, [pet.name, pet.breed, pet.color, pet.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
