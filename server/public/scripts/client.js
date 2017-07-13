@@ -19,6 +19,7 @@ $(document).ready(function(){
   });
   //add a pet to the database
   $('#submitPet').on('click', function(){
+    console.log('VALUE:', $('#dropDown').val());
     var pet = {};
     pet.owner_id = $('#dropDown').val();
     pet.name = $('#name').val();
@@ -88,13 +89,13 @@ function populateDropdown(response) {
   var ownerArray = response.arrayX;
   for (var i=0;i<ownerArray.length;i++){
     var doink = ownerArray[i];
-    console.log('I am in the populateDropdown function, in the array.', doink.first_name , doink.last_name + ' is also here.');
+    console.log('I am in the populateDropdown function, in the array.', doink);
     //$("#dropDown").append(new Option( doink.first_name + ' ' + doink.last_name ));
     $('#dropDown').append($('<option>', {
-      value: [i] + 1,
+      value: doink.owner_id,
       text: doink.first_name + ' ' + doink.last_name
     }));
-    console.log($('#dropdown option:selected').attr('value'));
+
   }
 
 }
