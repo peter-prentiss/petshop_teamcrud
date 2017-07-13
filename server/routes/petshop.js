@@ -107,7 +107,7 @@ router.post('/pet', function(req, res) {
 });
 
 router.post('/visit/:id', function(req, res) {
-  var time = new Date();
+  var time = new Date().toIsoString().slice(0, 19).replace('T', ' ');
   var pet = req.params.id;
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -154,7 +154,7 @@ router.put('/pet', function(req, res) {
 });
 
 router.put('/visit/:id', function(req, res) {
-  var time = new Date();
+  var time = new Date().toIsoString().slice(0, 19).replace('T', ' ');
   var pet = req.params.id;
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
