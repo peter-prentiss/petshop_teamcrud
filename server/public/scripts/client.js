@@ -70,10 +70,10 @@ function appendToDom(response){
     //$tr.data('pet', dink);
     //$tr.append('<td>' + dink)
     var $tr = $('<tr></tr>');
-    $tr.append('<td>' + display.first_name + ' ' + display.last_name + '</td>');
-    $tr.append('<td>' + display.name + '</td>');
-    $tr.append('<td>' + display.breed + '</td>');
-    $tr.append('<td>' + display.color + '</td>');
+    $tr.append('<td class="border">' + display.first_name + ' ' + display.last_name + '</td>');
+    $tr.append('<td class="border">' + display.name + '</td>');
+    $tr.append('<td class="border">' + display.breed + '</td>');
+    $tr.append('<td class="border">' + display.color + '</td>');
     $tr.append('<td>' + '<button>Go</button>' + '</td>');
     $tr.append('<td>' + '<button>Go</button>' + '</td>');
     $tr.append('<td>' + '<button>IN</button>' + '</td>');
