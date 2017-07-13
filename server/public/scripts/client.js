@@ -1,5 +1,19 @@
 $(document).ready(function(){
-  refreshData();
+  refreshData(); //refresh the page for data changes
+});
+
+//button listener to add owners
+$('#submitOwner').on('click', function(){
+  $.ajax({
+    type: 'POST',
+    url: '/owner',
+    data : {
+      
+    },
+    success: function(response){
+      refreshData(); // refresh the page
+    }
+  });
 });
 
 function refreshData() {
@@ -8,7 +22,7 @@ function refreshData() {
     url: '/petshop',
     success: function(response) {
       console.log(response);
-      appendToDom(response);
+      appendToDom(response); // append the changes
     }
   });
 }

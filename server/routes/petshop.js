@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.get('/visits', function(req, res) {
@@ -57,7 +57,7 @@ router.get('/visits', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.post('/owner', function(req, res) {
@@ -80,7 +80,7 @@ router.post('/owner', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.post('/pet', function(req, res) {
@@ -103,7 +103,7 @@ router.post('/pet', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.post('/visit/:id', function(req, res) {
@@ -127,11 +127,11 @@ router.post('/visit/:id', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.put('/pet', function(req, res) {
-  var pet = req.body
+  var pet = req.body;
   console.log(pet);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -150,7 +150,7 @@ router.put('/pet', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.put('/visit/:id', function(req, res) {
@@ -173,7 +173,7 @@ router.put('/visit/:id', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 router.delete('/pet/:id', function(req, res) {
@@ -195,7 +195,7 @@ router.delete('/pet/:id', function(req, res) {
         }
       });
     }
-  })
+  });
 });
 
 module.exports = router;
