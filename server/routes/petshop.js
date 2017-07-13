@@ -19,8 +19,9 @@ router.get('/', function(req, res) {
       res.sendStatus(500);
     } else {
       var queryText = 'SELECT * FROM "owners" ' +
-                      'JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
-                      'JOIN "visits" ON "pets"."id" = "visits"."pet_id";';
+                      'LEFT OUTER JOIN "pets" ON "owners"."id" = "pets"."owner_id" ' +
+                      'LEFT OUTER JOIN "visits" ON "pets"."id" = "visits"."pet_id" ' +
+                      'ORDER BY "owners"."last_name";';
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
