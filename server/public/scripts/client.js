@@ -20,7 +20,8 @@ $(document).ready(function(){
   //add a pet to the database
   $('#submitPet').on('click', function(){
     var pet = {};
-    pet.owner_id = $('#dropDown').val();
+    pet.owner_id = $('#dropDown option:selected').val();
+    console.log(pet.owner_id);
     pet.name = $('#name').val();
     pet.breed = $('#breed').val();
     pet.color = $('#color').val();
@@ -44,7 +45,7 @@ function refreshData() {
     type: 'GET',
     url: '/petshop',
     success: function(response) {
-      console.log(response);
+      // console.log(response);
       populateDropdown(response); //populate the drop down with owner name options
       appendToDom(response); // append the changes
     }
@@ -53,12 +54,12 @@ function refreshData() {
 
 function appendToDom(response){
   var displays = response.arrayX;
-  console.log(displays);
+  // console.log(displays);
   $('#showInfo').empty();
 
   for(var i=0; i < displays.length; i++){
     var display = displays[i];
-    console.log(display);
+    // console.log(display);
 
     if (display.name === null){ //if the owner is added without any pet data, null values come to table
       display.name = 'No pets yet!';
@@ -88,13 +89,10 @@ function populateDropdown(response) {
   var ownerArray = response.arrayX;
   for (var i=0;i<ownerArray.length;i++){
     var doink = ownerArray[i];
-    console.log('I am in the populateDropdown function, in the array.', doink.first_name , doink.last_name + ' is also here.');
+    // console.log('I am in the populateDropdown function, in the array.', doink.first_name , doink.last_name + ' is also here.');
     //$("#dropDown").append(new Option( doink.first_name + ' ' + doink.last_name ));
-    $('#dropDown').append($('<option>', {
-      value: [i] + 1,
-      text: doink.first_name + ' ' + doink.last_name
-    }));
-    console.log($('#dropdown option:selected').attr('value'));
+    $('#dropDown').append($(`<option value="${i + 1}">${doink.first_name}</option>`));
+    console.log($('#dropDown option:selected').val());
   }
 
 }

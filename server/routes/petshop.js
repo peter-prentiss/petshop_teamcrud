@@ -85,6 +85,7 @@ router.post('/owner', function(req, res) {
 
 router.post('/pet', function(req, res) {
   var pet = req.body;
+  console.log(pet);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
@@ -92,7 +93,7 @@ router.post('/pet', function(req, res) {
     } else {
       var queryText = 'INSERT INTO "pets" ("name", "breed", "color", "owner_id")' +
                       'VALUES ($1, $2, $3, $4);';
-      db.query(queryText, [pet.name, pet.breed, pet.color, pet.ownerId], function(errorMakingQuery, result){
+      db.query(queryText, [pet.name, pet.breed, pet.color, pet.owner_id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
