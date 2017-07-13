@@ -36,6 +36,27 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/owners', function(req, res) {
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      var queryText = 'SELECT * FROM owners;';
+      db.query(queryText, function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          res.send({arrayX: result.rows});
+        }
+      });
+    }
+  });
+});
+
 router.get('/visits', function(req, res) {
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {

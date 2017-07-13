@@ -1,6 +1,6 @@
 $(document).ready(function(){
   refreshData(); //refresh the page for data changes
-
+  ownerData();
   //add owner to database
   $('#submitOwner').on('click', function(){
     var owner = {};
@@ -46,8 +46,18 @@ function refreshData() {
     url: '/petshop',
     success: function(response) {
       // console.log(response);
-      populateDropdown(response); //populate the drop down with owner name options
       appendToDom(response); // append the changes
+    }
+  });
+}
+
+function ownerData() {
+  $.ajax({
+    type: 'GET',
+    url: '/petshop/owners',
+    success: function(response) {
+      // console.log(response);
+      populateDropdown(response); //populate the drop down with owner name options
     }
   });
 }
